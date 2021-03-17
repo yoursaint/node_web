@@ -13,11 +13,11 @@
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script type="text/javascript" src="./js/web3.min.js"></script>
-	<script type="text/javascript" src="./js/ethereumjs-tx-1.3.3.min.js"></script>
+	<script type="text/javascript" src="../public/js/web3.min.js"></script>
+	<script type="text/javascript" src="../public/js/ethereumjs-tx-1.3.3.min.js"></script>
 	<script src="https://code.jquery.com/jquery-latest.js "></script>
-	<script type="text/javascript" src="./js/qrcode.js"></script>
-	    <script type="text/javascript" src="./js/instascan.min.js"></script>
+	<script type="text/javascript" src="../public/js/qrcode.js"></script>
+	<script type="text/javascript" src="../public/js/instascan.min.js"></script>
 	<script src="https://code.jquery.com/jquery-latest.js "></script>
 
 	<!-- bootsrtap CSS -->
@@ -128,8 +128,9 @@
 				// <h5>수신처 <input id="toaddress" size="45" value="0x09BCeaC0A761E13f4e4F1461F0fD43dA25791588" placeholder=""></input> </h5>
 			})
 			
-						scanner.addListener('scan', function (content) {
-						  console.log(content);
+			let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+			scanner.addListener('scan', function (content) {
+				console.log(content);
 				$('#message').text( content );
 				
 				
