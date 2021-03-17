@@ -15,10 +15,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script type="text/javascript" src="./js/web3.min.js"></script>
 	<script type="text/javascript" src="./js/ethereumjs-tx-1.3.3.min.js"></script>
-	<script src="http://code.jquery.com/jquery-latest.js "></script>
+	<script src="https://code.jquery.com/jquery-latest.js "></script>
 	<script type="text/javascript" src="./js/qrcode.js"></script>
 	    <script type="text/javascript" src="./js/instascan.min.js"></script>
-	<script src="http://code.jquery.com/jquery-latest.js "></script>
+	<script src="https://code.jquery.com/jquery-latest.js "></script>
 
 	<!-- bootsrtap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -127,6 +127,48 @@
 				// <h5>송신처 <input id="fromaddress" size="45" placeholder=""></input> </h5>
 				// <h5>수신처 <input id="toaddress" size="45" value="0x09BCeaC0A761E13f4e4F1461F0fD43dA25791588" placeholder=""></input> </h5>
 			})
+			
+						scanner.addListener('scan', function (content) {
+						  console.log(content);
+				$('#message').text( content );
+				
+				
+				$('#fromaddress').val(privateKey);
+					// <input id="myField" type="text" name="email"/>
+					//getting the value
+						let fromaddress = $("#fromaddress").val();
+						   // setting the value
+						$("#fromaddress").val( "new value here" );
+						   // <h5>송신처  <input id="fromaddress" size="45" placeholder=""></input> </h5>
+				
+				let obj = JSON.parse(content);
+				alert("Account 입력이 됐습니다...!!!" + account );
+				console.log("obj: ", obj);
+				let account = obj.account.toString();
+				let passwd = obj.passwd.toString();
+				
+				$('#i_address').val(account);
+				console.log("account: ", account);
+				console.log("passwd: ", passwd);
+				
+				
+				var toString = product.toString();
+					console.log("product: " + toString);
+				var strArray = toString.split(",");
+				var address = strArray[0];
+				var privatekey = strArray[1];
+				
+			});
+			
+			Instascan.Camera.getCameras().then(function (cameras) {
+				if (cameras.length > 0) {
+					scanner.start(cameras[0]);
+				} else {
+				console.error('No cameras found.');
+				}
+			}).catch(function (e) {
+				console.error(e);
+			});
 		})
 	</script>
 </head>
